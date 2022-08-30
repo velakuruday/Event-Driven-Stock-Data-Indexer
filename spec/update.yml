@@ -1,0 +1,33 @@
+openapi: 3.0.2
+info:
+  title: Defines a user update to be indexed
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    UserUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        id:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+          nullable: true
+        membership:
+          type: object
+          properties:
+            status:
+              type: string
+            category:
+              type: string
+              nullable: true
+        address:
+          type: string
+          nullable: true
