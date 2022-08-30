@@ -1,4 +1,3 @@
-DEVELOPER_ID: uvelakur
+DEVELOPER_ID: velakuruday
 KAFKA_BROKER: localhost:9091
-SENTRY_DSN: https://partner0000partner000crm000syncer@report.gygdev.gygtest.com/1
 SPRING_PROFILES_ACTIVE: dev
