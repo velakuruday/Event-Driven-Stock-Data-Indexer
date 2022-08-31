@@ -17,9 +17,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 @AllArgsConstructor
 @Slf4j
 public class EventApi {
-
-    private final ObjectMapper objectMapper;
-
     private final UserUpdateIndexer indexer;
 
     @KafkaListener(
@@ -27,15 +24,9 @@ public class EventApi {
             topics = "user.Updates",
             containerFactory = "containerFactory"
     )
-    public void consume(@Payload String json, Acknowledgment ack) {
-        try {
-            UserUpdateDto userUpdate = objectMapper.readValue(json, UserUpdateDto.class);
-            indexer.indexUserUpdate(userUpdate, ack);
-        } catch (JsonProcessingException e) {
-            log.error("Error processing message: {}" + e.getMessage());
-        } finally {
+    public void consume(@Payload String message, Acknowledgment ack) {
+            indexer.indexUserUpdate(message, ack);
             ack.acknowledge();
             RequestContextHolder.resetRequestAttributes();
-        }
     }
 }
