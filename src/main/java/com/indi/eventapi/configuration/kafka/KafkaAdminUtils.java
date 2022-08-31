@@ -1,8 +1,5 @@
 package com.indi.eventapi.configuration.kafka;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;
@@ -11,6 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
 @Component
 @Slf4j
 public class KafkaAdminUtils {
@@ -18,8 +19,8 @@ public class KafkaAdminUtils {
     private final Map<String, Object> kafkaConfig;
 
     public KafkaAdminUtils(
-        KafkaAdmin kafkaAdmin,
-        @Value("${spring.kafka.bootstrap-servers}") String bootstrapServers
+            KafkaAdmin kafkaAdmin,
+            @Value("${spring.kafka.bootstrap-servers}") String bootstrapServers
     ) {
         kafkaConfig = new HashMap<>();
         kafkaConfig.putAll(kafkaAdmin.getConfigurationProperties());
@@ -34,9 +35,9 @@ public class KafkaAdminUtils {
             var clusterId = clusterInfo.clusterId();
             var nodes = clusterInfo.nodes();
             log.info(String.format(
-                "KafkaProducer.isConnectionHealthy: Yes! Info: cluster %s with %d nodes",
-                clusterId.get(),
-                nodes.get().size()
+                    "KafkaProducer.isConnectionHealthy: Yes! Info: cluster %s with %d nodes",
+                    clusterId.get(),
+                    nodes.get().size()
             ));
             return true;
         } catch (InterruptedException | ExecutionException e) {

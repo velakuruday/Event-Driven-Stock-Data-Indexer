@@ -27,8 +27,7 @@ public class UserUpdateIndexer {
             UserUpdateDto userUpdate = objectMapper.readValue(message, UserUpdateDto.class);
 
             log.info("Processed subscription update of user: {}", userUpdate.getName());
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             log.error("Error processing message {}", e.getMessage());
         }
     }

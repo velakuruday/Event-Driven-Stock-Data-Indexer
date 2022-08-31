@@ -147,7 +147,7 @@ task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTa
 def externalSpecFiles = []
 
 compileJava.dependsOn(
-    'generateApi'
+        'generateApi'
 )
 
 task printSpotBugsReport {
