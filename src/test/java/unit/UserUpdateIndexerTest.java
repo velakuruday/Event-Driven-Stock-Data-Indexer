@@ -27,8 +27,7 @@ import java.util.Map;
 
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UserUpdateIndexerTest {
 
@@ -71,6 +70,8 @@ public class UserUpdateIndexerTest {
         when(esClient.index(Mockito.any(),Mockito.any())).thenReturn(response);
 
         userUpdateIndexer.indexUserUpdate(message, ack);
+
+        verify(ack, times(1)).acknowledge();
     }
 
     private String parseJson(String filePath) throws IOException {
