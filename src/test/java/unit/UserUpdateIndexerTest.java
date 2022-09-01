@@ -1,5 +1,6 @@
 package unit;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
 import com.indi.eventapi.dto.UserUpdateMembershipDto;
@@ -58,9 +59,6 @@ public class UserUpdateIndexerTest {
                 .address(JsonNullable.of("Smith Residence, Washington, USA"))
                 .build();
 
-        Map<String, Object> jsonMap = new HashMap<>();
-        jsonMap.put(update.getId(), update);
-
         var response = getTestResponse();
 
         var ack = mock(Acknowledgment.class);
@@ -68,6 +66,19 @@ public class UserUpdateIndexerTest {
         when(mapper.readValue(anyString(), Mockito.eq(UserUpdateDto.class))).thenReturn(update);
 
         when(esClient.index(Mockito.any(),Mockito.any())).thenReturn(response);
+
+        userUpdateIndexer.indexUserUpdate(message, ack);
+
+        verify(ack, times(1)).acknowledge();
+    }
+
+    @Test
+    public void testJsonParseException() throws IOException {
+        var message = parseJson("src/test/resources/user_update_test_data.json");
+
+        var ack = mock(Acknowledgment.class);
+
+        when(mapper.readValue(anyString(), Mockito.eq(UserUpdateDto.class))).thenThrow(JsonProcessingException.class);
 
         userUpdateIndexer.indexUserUpdate(message, ack);
 
