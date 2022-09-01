@@ -53,7 +53,7 @@ sourceSets {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnit()
     outputs.upToDateWhen { false }
 }
 
