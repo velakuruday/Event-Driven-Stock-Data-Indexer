@@ -100,10 +100,9 @@ dependencies {
     //r4j
     implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
     //Elasticsearch
-    implementation 'co.elastic.clients:elasticsearch-java:8.4.1'
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+    implementation 'org.elasticsearch:elasticsearch:7.13.1'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.13.1'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.13.1'
 }
 
 task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
@@ -130,7 +129,8 @@ task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTa
             hideGenerationTimestamp: "true",
             interfaceOnly          : "true",
             skipDefaultInterface   : "true",
-            useTags                : "true"
+            useTags                : "true",
+            additionalModelTypeAnnotations: "@lombok.Builder;@lombok.AllArgsConstructor"
     ]
 }
 

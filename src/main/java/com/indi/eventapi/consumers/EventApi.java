@@ -13,10 +13,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 public class EventApi {
     private final UserUpdateIndexer indexer;
 
-    @KafkaListener(groupId = "user-update", topics = "user.Updates", containerFactory = "containerFactory")
+    private final String CONSUMER_INDEX = "1";
+
+    @KafkaListener(groupId = "user-update-" + CONSUMER_INDEX, topics = "user.Updates", containerFactory = "containerFactory")
     public void consume(@Payload String message, Acknowledgment ack) {
         indexer.indexUserUpdate(message, ack);
-        ack.acknowledge();
         RequestContextHolder.resetRequestAttributes();
     }
 }
