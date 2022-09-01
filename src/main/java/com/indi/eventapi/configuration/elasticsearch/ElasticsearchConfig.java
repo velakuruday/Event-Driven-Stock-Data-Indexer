@@ -1,11 +1,9 @@
 package com.indi.eventapi.configuration.elasticsearch;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,12 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticsearchConfig {
 
     @Bean
-    public ElasticsearchClient getElasticsearchClient() {
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
+    public RestHighLevelClient getElasticsearchClient() {
+        RestClientBuilder restClient = RestClient.builder(new HttpHost("localhost", 9200));
 
-        ElasticsearchTransport transport = new RestClientTransport(
-                restClient, new JacksonJsonpMapper());
-
-        return new ElasticsearchClient(transport);
+        return new RestHighLevelClient(restClient);
     }
 }

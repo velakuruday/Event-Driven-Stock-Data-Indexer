@@ -1,24 +1,20 @@
-import com.github.spotbugs.snom.SpotBugsTask
-
 buildscript {
     repositories {
         mavenCentral()
     }
     ext {
-        testContainersVersion = '1.16.0'
         resilience4jVersion = '1.7.0'
     }
 }
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.6.7'
+    id 'org.springframework.boot' version '2.7.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'checkstyle'
     id 'com.adarshr.test-logger' version '3.0.0'
     id 'org.owasp.dependencycheck' version '6.2.2'
     id 'org.openapi.generator' version '5.3.0'
-    id 'com.github.spotbugs' version '4.7.2'
 }
 
 group = 'com.eventapi'
@@ -104,8 +100,9 @@ dependencies {
     //r4j
     implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
     //Elasticsearch
-    implementation 'co.elastic.clients:elasticsearch-java:8.4.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    implementation 'org.elasticsearch:elasticsearch:7.13.1'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.13.1'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.13.1'
 }
 
 task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
@@ -132,41 +129,11 @@ task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTa
             hideGenerationTimestamp: "true",
             interfaceOnly          : "true",
             skipDefaultInterface   : "true",
-            useTags                : "true"
+            useTags                : "true",
+            additionalModelTypeAnnotations: "@lombok.Builder;@lombok.AllArgsConstructor"
     ]
 }
 
-// If you depend on external OpenAPI definitions, add the URL to this list.
-// Then, for the OpenAPI GenerateTask you add for each definition, add the
-// 'downloadApiSpecs' task as dependency, and include e.g.:
-//
-//     inputSpec = "$buildDir/catalog.master.delivery"
-//
-// Finally, add the name of the GenerateTask you created as a dependency for
-// the 'spotlessJava' task below.
-def externalSpecFiles = []
-
 compileJava.dependsOn(
-    'generateApi'
+        'generateApi'
 )
-
-task printSpotBugsReport {
-    outputs.upToDateWhen { false }
-    doLast {
-        fileTree(dir: "${buildDir}/reports/spotbugs", include: '**/*.txt')
-                .toSorted { it.lastModified() }
-                .last()
-                .readLines()
-                .forEach() { println(it) }
-    }
-}
-
-tasks.withType(SpotBugsTask).configureEach {
-    excludeFilter = file("${rootDir}/gradle/spotbugs-exclusions.xml")
-    extraArgs = ["-longBugCodes", "-sortByClass"]
-    reports {
-        text.enabled = true
-        html.enabled = false
-    }
-    it.finalizedBy('printSpotBugsReport')
-}

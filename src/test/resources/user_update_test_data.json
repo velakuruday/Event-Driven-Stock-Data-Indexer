@@ -1,0 +1,12 @@
+{
+  "name" : "Rick Sanchez",
+  "type" : "user",
+  "id": "4JY0RBSXVL",
+  "email" : "rickc137@rickmail.com",
+  "phone": "+1 157 556 8560",
+  "membership" : {
+    "status": "premium",
+    "category": "family"
+  },
+  "address": "Smith Residence, Washington, USA"
+}

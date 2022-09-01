@@ -1,8 +1,8 @@
 version: '2'
 services:
   zookeeper:
-    image:  confluentinc/cp-zookeeper
-    container_name: zookeeper-public
+    image: confluentinc/cp-zookeeper
+    container_name: zookeeper
     ports:
       - 2181:2181
     environment:
@@ -12,7 +12,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka
-    container_name: kafka-public
+    container_name: kafka
     links:
       - zookeeper
     ports:
@@ -39,7 +39,7 @@ services:
 
   akhq:
     image: tchiotludo/akhq
-    container_name: kafka-hq-public
+    container_name: kafka-hq
     environment:
       AKHQ_CONFIGURATION: |
         akhq:
@@ -96,11 +96,11 @@ services:
       CONNECT_PLUGIN_PATH: ' /usr/share/java/'
 
   elasticsearch:
-    image: elasticsearch:8.4.0
+    image: elasticsearch:7.13.1
     platform: linux/arm64
-    container_name: elasticsearch-public
+    container_name: elasticsearch
     environment:
-      - cluster.name= dev
+      - cluster.name= dev0
       - xpack.security.enabled=false
       - discovery.type=single-node
     ulimits:
@@ -113,19 +113,21 @@ services:
     cap_add:
       - IPC_LOCK
     volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
+      - elasticsearch-data:/var/lib/elasticsearch/data
     ports:
       - 9200:9200
       - 9300:9300
 
-  elastic-hq:
-    image: elastichq/elasticsearch-hq
-    container_name: elastic-hq-public
+  kibana:
+    container_name: kibana
+    image: kibana:7.13.1
+    platform: linux/arm64
     environment:
-      - HQ_DEFAULT_URL=http://elasticsearch:9200
-      - HQ_ENABLE_SSL=False
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
-      - 5001:5000
+      - 5601:5601
+    depends_on:
+      - elasticsearch
 
 volumes:
   elasticsearch-data:
