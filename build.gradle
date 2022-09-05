@@ -94,12 +94,8 @@ dependencies {
     implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
     // OpenAPI new dependency
     compileOnly 'io.springfox:springfox-boot-starter:3.0.0'
-    // JSON column types
-    implementation 'com.vladmihalcea:hibernate-types-52:2.16.2'
     // HTTPClient usage
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
-    //r4j
-    implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
     //Elasticsearch
     implementation 'org.elasticsearch:elasticsearch:7.13.1'
     implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.13.1'
