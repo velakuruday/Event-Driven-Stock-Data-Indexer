@@ -2,9 +2,6 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    ext {
-        resilience4jVersion = '1.7.0'
-    }
 }
 
 plugins {
