@@ -2,6 +2,7 @@ package integration;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -17,10 +18,12 @@ import java.io.IOException;
 @DirtiesContext
 @AllArgsConstructor
 @Slf4j
-@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9091", "port=9091"})
+@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
 public class IntegrationTest {
 
     private final RestHighLevelClient esClient;
+
+    private final KafkaConsumer consumer;
 
     @BeforeEach
     public void setUp() {
