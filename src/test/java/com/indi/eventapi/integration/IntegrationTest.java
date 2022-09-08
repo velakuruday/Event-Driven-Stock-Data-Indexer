@@ -4,6 +4,7 @@ import com.indi.eventapi.configuration.ElasticsearchTestConfig;
 import com.indi.eventapi.configuration.KafkaTestUtils;
 import com.indi.eventapi.helpers.ElasticsearchHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.nio.file.Path;
 @RunWith(SpringRunner.class)
 @Import({ElasticsearchTestConfig.class, KafkaTestUtils.class})
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9091", "port=9091"})
-public class IntegrationTest {
+public abstract class IntegrationTest {
 
     @Autowired
     protected ElasticsearchHelper elasticsearchHelper;

@@ -51,6 +51,7 @@ sourceSets {
 
 test {
     useJUnit()
+    logging.captureStandardOutput LogLevel.INFO
     outputs.upToDateWhen { false }
 }
 

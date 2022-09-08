@@ -3,7 +3,8 @@ package com.indi.eventapi.integration;
 import com.indi.eventapi.dto.UserUpdateDto;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Durations;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ import static org.awaitility.Awaitility.await;
 import static org.awaitility.Durations.FIVE_SECONDS;
 import static org.hamcrest.Matchers.equalTo;
 
-class EventApiIntegrationTest extends IntegrationTest {
+public class EventApiIntegrationTest extends IntegrationTest {
 
     @Test
     public void testSuccessfulIndex() throws IOException {
