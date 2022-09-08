@@ -1,4 +1,4 @@
-package unit;
+package com.indi.eventapi.unit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,7 +52,7 @@ public class UserUpdateIndexerTest {
 
         var update = UserUpdateDto.builder()
                 .name("Rick Sanchez")
-                .id("123456")
+                .id("1")
                 .email("rickc137@rickmail.com")
                 .phone(JsonNullable.of("+1 532 545 89520"))
                 .membership(UserUpdateMembershipDto.builder().status("premium").category(JsonNullable.of("family")).build())
