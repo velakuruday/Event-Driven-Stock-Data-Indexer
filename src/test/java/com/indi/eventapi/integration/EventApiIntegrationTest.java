@@ -3,6 +3,7 @@ package com.indi.eventapi.integration;
 import com.indi.eventapi.dto.UserUpdateDto;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Durations;
+import org.elasticsearch.ElasticsearchStatusException;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class EventApiIntegrationTest extends IntegrationTest {
                 .with()
                 .pollDelay(Durations.TWO_HUNDRED_MILLISECONDS)
                 .pollInterval(Durations.TWO_HUNDRED_MILLISECONDS)
+                .ignoreException(ElasticsearchStatusException.class)
                 .until(() -> elasticsearchHelper.findById("4JY0RBSXVL"
                 ).map(UserUpdateDto::getId).orElse(null), equalTo("4JY0RBSXVL"));
     }
