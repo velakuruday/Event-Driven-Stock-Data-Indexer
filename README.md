@@ -1,6 +1,6 @@
 # Event driven indxer service
 
-This application provides and indexing service by consuming user data from Kafka
+This application provides an indexing service by consuming user data from Kafka
 and indexing into elasticsearch.
 
 ### Kafka topics
@@ -62,7 +62,7 @@ Run the application using the command:
 > Note: The application will successfully start only if all dependent
 > containers are running and healthy. 
 
-In akhq, navigate to the previously created topic and publish a message:
+In akhq, navigate to _Topics > user.Updates > Produce to topic_ and publish the message:
 
 ```
 {
@@ -79,7 +79,7 @@ In akhq, navigate to the previously created topic and publish a message:
 }
 ```
 
-If indexing is successful, the application logs should publish:
+If indexing is successful, the application log should publish:
 
 _Indexed update of user Rick Sanchez_
 
