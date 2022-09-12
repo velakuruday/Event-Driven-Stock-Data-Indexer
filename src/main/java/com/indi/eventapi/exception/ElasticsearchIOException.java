@@ -1,4 +1,4 @@
-package exception;
+package com.indi.eventapi.exception;
 
 public class ElasticsearchIOException extends RuntimeException {
 

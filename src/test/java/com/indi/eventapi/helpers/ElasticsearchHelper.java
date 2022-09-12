@@ -2,7 +2,7 @@ package com.indi.eventapi.helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
-import exception.ElasticsearchIOException;
+import com.indi.eventapi.exception.ElasticsearchIOException;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.get.GetRequest;
