@@ -2,6 +2,7 @@ package com.indi.eventapi.helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
+import exception.ElasticsearchIOException;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.get.GetRequest;
@@ -45,13 +46,6 @@ public class ElasticsearchHelper {
             return Optional.of(mapper.readValue(response.getSourceAsString(), UserUpdateDto.class));
         } catch (IOException e) {
             throw new ElasticsearchIOException(e);
-        }
-    }
-
-    public static class ElasticsearchIOException extends RuntimeException {
-
-        public ElasticsearchIOException(Throwable cause) {
-            super(cause);
         }
     }
 }

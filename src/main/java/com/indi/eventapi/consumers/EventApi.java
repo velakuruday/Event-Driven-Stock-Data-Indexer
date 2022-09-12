@@ -1,6 +1,6 @@
 package com.indi.eventapi.consumers;
 
-import com.indi.eventapi.services.UserUpdateIndexer;
+import com.indi.eventapi.service.UserUpdateIndexer;
 import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
