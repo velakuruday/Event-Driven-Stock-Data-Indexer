@@ -5,7 +5,6 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Durations;
 import org.junit.Test;
 
-
 import java.io.IOException;
 
 import static org.awaitility.Awaitility.await;
