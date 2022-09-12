@@ -12,24 +12,27 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
 import org.testcontainers.utility.DockerImageName;
 
+import java.util.Map;
+
 @TestConfiguration
 @Slf4j
 public class ElasticsearchTestConfig {
 
     private final Integer PORT = 9200;
 
-    private final DockerImageName DOCKER_IMAGE = DockerImageName.parse("elasticsearch:7.13.1");
-
     private final GenericContainer<?> container;
 
     public ElasticsearchTestConfig() {
 
+        DockerImageName DOCKER_IMAGE = DockerImageName.parse("elasticsearch:7.13.1");
         container = new GenericContainer<>(DOCKER_IMAGE);
         container.withExposedPorts(PORT);
-        container.withEnv("xpack.security.enabled", "false");
         container.withEnv("discovery.type", "single-node");
         container.withLabel("indi-dev", "velakuruday");
+        container.withEnv("DISABLE_INSTALL_DEMO_CONFIG", "true");
+        container.withEnv("DISABLE_SECURITY_PLUGIN", "true");
         container.withReuse(true);
+        container.withTmpFs(Map.of("/var/lib/elasticsearch", "rw"));
         container.setWaitStrategy((new HttpWaitStrategy())
                 .forPort(PORT)
                 .forStatusCodeMatching(response -> response == 200 || response == 401));

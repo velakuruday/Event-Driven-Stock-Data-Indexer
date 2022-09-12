@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.admin.indices.refresh.RefreshRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -37,7 +36,7 @@ public class UserUpdateIndexer {
                     .id(userUpdate.getId())
                     .source(message, XContentType.JSON);
 
-            var response = esClient.index(request, RequestOptions.DEFAULT);
+            esClient.index(request, RequestOptions.DEFAULT);
 
             log.info("Indexed update of user {}", userUpdate.getName());
 

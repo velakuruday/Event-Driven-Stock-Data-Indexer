@@ -4,7 +4,6 @@ import com.indi.eventapi.configuration.ElasticsearchTestConfig;
 import com.indi.eventapi.configuration.KafkaTestUtils;
 import com.indi.eventapi.helpers.ElasticsearchHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,7 +30,7 @@ public abstract class IntegrationTest {
 
     @AfterEach
     void tearDown() {
-        elasticsearchHelper.deleteAllIndices();
+        elasticsearchHelper.deleteAllDocs();
     }
 
     protected String parseJson(String filePath) throws IOException {
