@@ -49,7 +49,7 @@ the command:
 >
 > Note: The docker compose file is set to download images for M1 chip
 >  (linux/arm64). For linux/amd64 architecture, specify them in the "platform"
-> field in the docker compose files.
+> field in the docker compose file.
 
 Once the containers are running, bring up akhq using the url
 http://localhost:8081/ in the browser. Navigate to _Topics > Create a topic_
