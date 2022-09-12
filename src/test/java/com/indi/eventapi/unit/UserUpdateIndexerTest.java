@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
 import com.indi.eventapi.dto.UserUpdateMembershipDto;
 import com.indi.eventapi.service.UserUpdateIndexer;
-
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -19,7 +18,6 @@ import org.springframework.kafka.support.Acknowledgment;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -94,5 +92,4 @@ public class UserUpdateIndexerTest {
 
         return response.build();
     }
-
 }

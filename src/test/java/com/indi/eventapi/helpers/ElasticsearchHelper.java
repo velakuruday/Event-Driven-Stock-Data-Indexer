@@ -32,7 +32,7 @@ public class ElasticsearchHelper {
         try {
             esClient.indices().delete(request, RequestOptions.DEFAULT);
         } catch (IOException e) {
-            log.error("Delete request failed {}", e.getMessage());
+            throw new ElasticsearchIOException(e);
         }
     }
 

@@ -40,12 +40,12 @@ public class UserUpdateIndexer {
 
             log.info("Indexed update of user {}", userUpdate.getName());
 
+            ack.acknowledge();
         } catch (JsonProcessingException e) {
             log.error("Error processing message {}", e.getMessage());
+            ack.acknowledge();
         } catch (IOException e) {
             log.error("Indexing failed {}", e.getMessage());
-        } finally {
-            ack.acknowledge();
         }
     }
 }
