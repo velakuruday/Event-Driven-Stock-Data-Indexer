@@ -1,4 +1,4 @@
-package com.indi.eventapi.services;
+package com.indi.eventapi.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,12 +40,12 @@ public class UserUpdateIndexer {
 
             log.info("Indexed update of user {}", userUpdate.getName());
 
+            ack.acknowledge();
         } catch (JsonProcessingException e) {
             log.error("Error processing message {}", e.getMessage());
+            ack.acknowledge();
         } catch (IOException e) {
             log.error("Indexing failed {}", e.getMessage());
-        } finally {
-            ack.acknowledge();
         }
     }
 }

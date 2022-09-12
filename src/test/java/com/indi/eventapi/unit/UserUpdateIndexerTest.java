@@ -1,18 +1,13 @@
-package unit;
+package com.indi.eventapi.unit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indi.eventapi.dto.UserUpdateDto;
 import com.indi.eventapi.dto.UserUpdateMembershipDto;
-import com.indi.eventapi.services.UserUpdateIndexer;
-
+import com.indi.eventapi.service.UserUpdateIndexer;
 import org.elasticsearch.action.DocWriteResponse;
-import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.index.Index;
 import org.elasticsearch.index.shard.ShardId;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,9 +18,6 @@ import org.springframework.kafka.support.Acknowledgment;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -52,7 +44,7 @@ public class UserUpdateIndexerTest {
 
         var update = UserUpdateDto.builder()
                 .name("Rick Sanchez")
-                .id("123456")
+                .id("1")
                 .email("rickc137@rickmail.com")
                 .phone(JsonNullable.of("+1 532 545 89520"))
                 .membership(UserUpdateMembershipDto.builder().status("premium").category(JsonNullable.of("family")).build())
@@ -100,5 +92,4 @@ public class UserUpdateIndexerTest {
 
         return response.build();
     }
-
 }

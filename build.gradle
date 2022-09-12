@@ -51,6 +51,7 @@ sourceSets {
 
 test {
     useJUnit()
+    logging.captureStandardOutput LogLevel.INFO
     outputs.upToDateWhen { false }
 }
 
@@ -68,7 +69,10 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     testImplementation 'org.mockito:mockito-inline:2.13.0'
-
+    //Test container
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.1"
+    testImplementation "org.testcontainers:testcontainers:1.17.3"
+    testImplementation "org.testcontainers:junit-jupiter:1.17.3"
     // Lombok annotations to reduce boilerplate code
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -97,6 +101,7 @@ dependencies {
     implementation 'org.elasticsearch:elasticsearch:7.13.1'
     implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.13.1'
     implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.13.1'
+    testImplementation 'org.awaitility:awaitility:4.1.0'
 }
 
 task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
