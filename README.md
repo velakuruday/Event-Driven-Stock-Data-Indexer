@@ -62,6 +62,32 @@ Run the application using the command:
 > Note: The application will successfully start only if all dependent
 > containers are running and healthy. 
 
+In akhq, navigate to the previously created topic and publish a message:
+
+```
+{
+  "name" : "Rick Sanchez",
+  "type" : "user",
+  "id": "5LJT59HYR2",
+  "email" : "rickc137@rickmail.com",
+  "phone": "+1 157 556 8560",
+  "membership" : {
+    "status": "premium",
+    "category": "family"
+  },
+  "address": "Smith Residence, Washington, USA"
+}
+```
+
+If indexing is successful, the application logs should publish:
+
+_Indexed update of user Rick Sanchez_
+
+Search the newly indexed document using:
+
+> http://localhost:9200/user_updates_1/_search
+
+The documents can also be explored using Kibana.
 
 
 
