@@ -49,6 +49,10 @@ sourceSets {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.warnings = false
+}
+
 test {
     useJUnit()
     logging.captureStandardOutput LogLevel.INFO
