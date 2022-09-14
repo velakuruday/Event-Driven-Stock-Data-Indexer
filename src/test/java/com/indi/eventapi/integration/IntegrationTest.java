@@ -19,7 +19,7 @@ import java.nio.file.Path;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Import({ElasticsearchTestConfig.class, KafkaTestUtils.class})
-@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9091", "port=9091"})
+@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
 public abstract class IntegrationTest {
 
     @Autowired
