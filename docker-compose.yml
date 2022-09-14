@@ -50,6 +50,7 @@ services:
   akhq:
     image: tchiotludo/akhq
     container_name: kafka-hq
+    restart: on-failure
     environment:
       AKHQ_CONFIGURATION: |
         akhq:
@@ -111,6 +112,7 @@ services:
     image: elasticsearch:7.13.1
     platform: linux/arm64
     container_name: elasticsearch
+    restart: on-failure
     environment:
       - cluster.name= dev0
       - xpack.security.enabled=false
@@ -131,8 +133,9 @@ services:
       - 9300:9300
 
   kibana:
-    container_name: kibana
     image: kibana:7.13.1
+    container_name: kibana
+    restart: on-failure
     platform: linux/arm64
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200

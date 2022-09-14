@@ -3,6 +3,13 @@
 This application provides an indexing service by consuming user data from Kafka
 and indexing into elasticsearch.
 
+### Framework
+
+[Spring Kafka Reference Document](https://docs.spring.io/spring-kafka/reference/html/)
+
+Spring kafka is used to consume messages and elasticsearch high level
+rest client to index documents.
+
 ### Kafka topics
 
 - user.Updates
@@ -14,13 +21,6 @@ and indexing into elasticsearch.
 ### Consumer group
 
 - user-update-*
-
-### Framework
-
-[Spring Kafka Reference Document](https://docs.spring.io/spring-kafka/reference/html/)
-
-Spring kafka is used to consume messages and elasticsearch high level
-rest client to index documents.
 
 ### Dependencies 
 
@@ -42,8 +42,12 @@ Run the tests using the command:
 
 ### Application
 
-The dependencies mentioned above can be run in a docker environment by using
-the command:
+The dependencies mentioned above can be run in a docker environment. Firstly,
+create and image of the application using:
+
+>`docker build -t eventapi .`
+
+Next run the application and dependencies using the command:
 
 >`docker compose up`
 >
@@ -53,14 +57,7 @@ the command:
 
 Once the containers are running, bring up akhq using the url
 http://localhost:8081/ in the browser. Navigate to _Topics > Create a topic_
-and create topic called "user.Updates".
-
-Run the application using the command:
-
-> `gradle bootrun`
-> 
-> Note: The application will successfully start only if all dependent
-> containers are running and healthy. 
+and create topic the "user.Updates".
 
 In akhq, navigate to _Topics > user.Updates > Produce to topic_ and publish the message:
 
