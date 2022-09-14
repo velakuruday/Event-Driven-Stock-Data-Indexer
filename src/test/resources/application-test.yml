@@ -1,0 +1,3 @@
+DEVELOPER_ID: velakuruday
+KAFKA_BROKER: localhost:9092
+SPRING_PROFILES_ACTIVE: dev
