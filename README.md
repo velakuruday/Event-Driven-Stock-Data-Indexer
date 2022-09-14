@@ -76,7 +76,7 @@ In akhq, navigate to _Topics > user.Updates > Produce to topic_ and publish the 
 }
 ```
 
-If indexing is successful, the application log should publish:
+If indexing is successful, the application log should read:
 
 _Indexed update of user Rick Sanchez_
 
