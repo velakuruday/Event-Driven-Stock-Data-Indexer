@@ -47,7 +47,7 @@ create and image of the application using:
 
 >`docker build -t eventapi .`
 
-Next run the application and dependencies using the command:
+Next, run the application and dependencies using the command:
 
 >`docker compose up -d`
 >
