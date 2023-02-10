@@ -1,7 +1,9 @@
 # Event driven indxer service
 
 This application provides an indexing service by consuming user data from Kafka
-and indexing into elasticsearch.
+and indexing into elasticsearch. 
+
+![Untitled](https://user-images.githubusercontent.com/31853241/218024512-b5e11029-e07c-4a04-a474-c4de454fba39.png)
 
 ### Framework
 
