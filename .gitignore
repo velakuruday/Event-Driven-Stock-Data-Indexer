@@ -3,5 +3,5 @@
 /.idea/
 .DS_Store
 .credential-scan.yml
-.gradlew
-.gradlw.bat
+gradlew
+gradlw.bat
