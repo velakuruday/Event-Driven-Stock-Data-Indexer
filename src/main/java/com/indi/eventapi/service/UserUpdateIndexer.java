@@ -37,9 +37,6 @@ public class UserUpdateIndexer {
                     .source(message, XContentType.JSON);
 
             esClient.index(request, RequestOptions.DEFAULT);
-
-            log.info("Indexed update of user {}", userUpdate.getName());
-
             ack.acknowledge();
         } catch (JsonProcessingException e) {
             log.error("Error processing message {}", e.getMessage());
