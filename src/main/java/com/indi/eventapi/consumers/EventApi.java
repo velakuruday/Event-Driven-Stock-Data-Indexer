@@ -15,7 +15,7 @@ public class EventApi {
 
     private final String CONSUMER_INDEX = "1";
 
-    @KafkaListener(groupId = "user-update-" + CONSUMER_INDEX, topics = "user.Updates", containerFactory = "containerFactory")
+    @KafkaListener(groupId = "user-update-" + CONSUMER_INDEX, topics = "user-updates", containerFactory = "containerFactory")
     public void consume(@Payload String message, Acknowledgment ack) {
         indexer.indexUserUpdate(message, ack);
         RequestContextHolder.resetRequestAttributes();
