@@ -72,24 +72,11 @@ docker-compose exec kafka kafka-console-producer.sh --topic user-updates --broke
 In the CLI enter the following message:
 
 ```
-{
-  "name" : "Rick Sanchez",
-  "type" : "user",
-  "id": "5LJT59HYR2",
-  "email" : "rickc137@rickmail.com",
-  "phone": "+1 157 556 8560",
-  "membership" : {
-    "status": "premium",
-    "category": "family"
-  },
-  "address": "Smith Residence, Washington, USA"
-}
+{"name":"Rick Sanchez","type":"user","id":"5LJT59HYR2","email":"rickc137@rickmail.com","phone":"+1 157 556 8560","membership":{"status":"premium","category":"family"},"address":"Smith Residence, Washington, USA"}
 ```
 Search the newly indexed document using:
 
 > http://localhost:9200/user_updates_1/_search
-
-The documents can also be explored using Kibana.
 
 
 
