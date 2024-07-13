@@ -16,7 +16,7 @@ rest client to index documents.
 
 ### Kafka topics
 
-- user.Updates
+- user-updates
 
 ### Elastic search indices
 
@@ -29,10 +29,8 @@ rest client to index documents.
 ### Dependencies 
 
 - Kafka
-- Zookeeper
 - Elasticsearch
 - Akhq
-- Kibana
 
 ## Instructions
 

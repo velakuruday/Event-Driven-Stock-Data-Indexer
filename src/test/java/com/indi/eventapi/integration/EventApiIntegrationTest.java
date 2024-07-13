@@ -17,7 +17,7 @@ public class EventApiIntegrationTest extends IntegrationTest {
     @Test
     public void testSuccessfulIndex() throws IOException {
         String message = parseJson("src/test/resources/user_update_test_data.json");
-        ProducerRecord<String, String> record = new ProducerRecord<>("user.Updates", message);
+        ProducerRecord<String, String> record = new ProducerRecord<>("user-updates", message);
 
         producer.send(record);
 
