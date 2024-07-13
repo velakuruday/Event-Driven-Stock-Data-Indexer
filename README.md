@@ -63,7 +63,19 @@ Once the containers are running, bring up akhq using the url
 http://localhost:8081/ in the browser. Navigate to _Topics > Create a topic_
 and create topic the "user.Updates".
 
-In akhq, navigate to _Topics > user.Updates > Produce to topic_ and publish the message:
+Open the command window and create a Kafka topic using the command:
+
+```
+docker-compose exec kafka kafka-topics.sh --create --topic user-updates --partitions 1 --replication-factor 1 --bootstrap-server kafka:9092
+```
+
+Run the following command to produce to the topic:
+
+```
+docker-compose exec kafka kafka-console-producer.sh --topic user-updates --broker-list kafka:9092
+```
+
+In the CLI enter the following message:
 
 ```
 {
@@ -79,11 +91,6 @@ In akhq, navigate to _Topics > user.Updates > Produce to topic_ and publish the 
   "address": "Smith Residence, Washington, USA"
 }
 ```
-
-If indexing is successful, the application log should read:
-
-_Indexed update of user Rick Sanchez_
-
 Search the newly indexed document using:
 
 > http://localhost:9200/user_updates_1/_search
