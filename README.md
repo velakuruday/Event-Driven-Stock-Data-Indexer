@@ -37,7 +37,9 @@ rest client to index documents.
 ### Tests
 Run the tests using the command:
 
-> `gradle test`
+```
+gradle test
+```
 >
 > Note: The integration tests automatically starts and
 > stops the docker test containers.
@@ -47,11 +49,14 @@ Run the tests using the command:
 The dependencies mentioned above can be run in a docker environment. Firstly,
 create and image of the application using:
 
->`docker build -t eventapi .`
+```
+docker build -t eventapi .
+```
 
 Next, run the application and dependencies using the command:
-
->`docker compose up -d`
+```
+docker compose up -d
+```
 >
 > Note: The docker compose file is set to download images for M1 chip
 >  (linux/arm64). For linux/amd64 architecture, specify them in the "platform"
