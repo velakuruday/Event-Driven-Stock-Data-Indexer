@@ -31,6 +31,7 @@ components:
         address:
           type: string
           nullable: true
+
     Stock:
       type: object
       properties:
@@ -53,3 +54,12 @@ components:
           format: float
         volume:
           type: integer
+
+    StockUpdate:
+      timestamp:
+        type: string
+        format: date-time
+      stocks:
+        type: array
+        items:
+          $ref: '#/components/schemas/Stock'
