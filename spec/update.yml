@@ -31,3 +31,25 @@ components:
         address:
           type: string
           nullable: true
+    Stock:
+      type: object
+      properties:
+        code:
+          type: string
+        adj_close:
+          type: number
+          format: float
+        close:
+          type: number
+          format: float
+        high:
+          type: number
+          format: float
+        low:
+          type: number
+          format: float
+        open:
+          type: number
+          format: float
+        volume:
+          type: integer
