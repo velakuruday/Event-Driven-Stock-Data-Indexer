@@ -1,5 +1,10 @@
 package com.indi.eventapi.models;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class Stock {
 
     private String company;
