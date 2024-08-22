@@ -2,6 +2,8 @@ package com.indi.eventapi.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.indi.eventapi.dto.StockUpdateDto;
+import com.indi.eventapi.models.StockUpdate;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RequestOptions;
@@ -28,8 +30,10 @@ public class UserUpdateIndexer {
 
     public void indexUserUpdate(String message, Acknowledgment ack) {
         try {
+            StockUpdateDto stockUpdateDto = objectMapper.readValue(message, StockUpdateDto.class);
+
             IndexRequest request = new IndexRequest("user_updates_" + ELASTIC_SEARCH_INDEX_VERSION)
-                    .source(message, XContentType.JSON);
+                    .source(objectMapper.writeValueAsString(StockUpdate.toStockUpdate(stockUpdateDto)), XContentType.JSON);
 
             esClient.index(request, RequestOptions.DEFAULT);
             ack.acknowledge();
