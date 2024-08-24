@@ -32,7 +32,7 @@ public class UserUpdateIndexer {
         try {
             StockUpdateDto stockUpdateDto = objectMapper.readValue(message, StockUpdateDto.class);
 
-            IndexRequest request = new IndexRequest("user_updates_" + ELASTIC_SEARCH_INDEX_VERSION)
+            IndexRequest request = new IndexRequest("stock_updates_" + ELASTIC_SEARCH_INDEX_VERSION)
                     .source(objectMapper.writeValueAsString(StockUpdate.toStockUpdate(stockUpdateDto)), XContentType.JSON);
 
             esClient.index(request, RequestOptions.DEFAULT);

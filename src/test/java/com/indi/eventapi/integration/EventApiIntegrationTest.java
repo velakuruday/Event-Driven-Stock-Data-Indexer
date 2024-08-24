@@ -1,5 +1,6 @@
 package com.indi.eventapi.integration;
 
+import com.indi.eventapi.dto.StockUpdateDto;
 import com.indi.eventapi.dto.UserUpdateDto;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.awaitility.Durations;
@@ -27,7 +28,7 @@ public class EventApiIntegrationTest extends IntegrationTest {
                 .pollDelay(Durations.TWO_HUNDRED_MILLISECONDS)
                 .pollInterval(Durations.TWO_HUNDRED_MILLISECONDS)
                 .ignoreException(ElasticsearchStatusException.class)
-                .until(() -> elasticsearchHelper.findById("4JY0RBSXVL"
-                ).map(UserUpdateDto::getId).orElse(null), equalTo("4JY0RBSXVL"));
+                .until(() -> elasticsearchHelper.findById("1"
+                ).map(StockUpdateDto).orElse(null), equalTo("1"));
     }
 }

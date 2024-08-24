@@ -3,13 +3,12 @@ package com.indi.eventapi.models;
 import com.indi.eventapi.dto.StockDto;
 import lombok.Builder;
 import lombok.Data;
-import org.rocksdb.Status;
 
 @Data
 @Builder
 public class Stock {
 
-    private String company;
+    private Company company;
 
     private String code;
 
@@ -27,7 +26,7 @@ public class Stock {
 
     public static Stock toStock(StockDto stockDto) {
         return Stock.builder()
-                .company(CodeMap.codeMap.get(stockDto.getCode()))
+                .company(Company.valueOf(stockDto.getCode()))
                 .code(stockDto.getCode())
                 .adjClose(stockDto.getAdjClose())
                 .open(stockDto.getOpen())
