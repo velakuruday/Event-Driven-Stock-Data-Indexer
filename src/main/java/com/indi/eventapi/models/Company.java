@@ -1,17 +1,14 @@
 package com.indi.eventapi.models;
 
-public enum Company {
+import java.util.HashMap;
 
-    PEP("Pepsi Co."),
-    KO("Coca Cola"),
-    APPL("Apple Inc."),
-    MSFT("Microsoft Corporation"),
-    GOOGL("Alphabet Inc."),
-    TSLA("TESLA Inc.");
-
-    private Company(String name) {
-        this.name = name;
-    }
-
-    public final String name;
+public class Company {
+    public static HashMap<String, String> codeMap = new HashMap<String, String>() {{
+        put("PEP", "Pepsi Co.");
+        put("KO", "Coca Cola");
+        put("AAPL", "Apple Inc.");
+        put("MSFT", "Microsoft Corporation");
+        put("GOOGL", "Alphabet Inc.");
+        put("TSLA", "TESLA Inc.");
+    }};
 }

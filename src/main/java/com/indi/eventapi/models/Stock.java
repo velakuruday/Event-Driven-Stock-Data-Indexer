@@ -1,14 +1,18 @@
 package com.indi.eventapi.models;
 
-import com.indi.eventapi.dto.StockDto;
+import com.indi.eventapi.dto.StockDataDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Stock {
 
-    private Company company;
+    private String company;
 
     private String code;
 
@@ -24,9 +28,9 @@ public class Stock {
 
     private Integer volume;
 
-    public static Stock toStock(StockDto stockDto) {
+    public static Stock toStock(StockDataDto stockDto) {
         return Stock.builder()
-                .company(Company.valueOf(stockDto.getCode()))
+                .company(Company.codeMap.get(stockDto.getCode()))
                 .code(stockDto.getCode())
                 .adjClose(stockDto.getAdjClose())
                 .open(stockDto.getOpen())

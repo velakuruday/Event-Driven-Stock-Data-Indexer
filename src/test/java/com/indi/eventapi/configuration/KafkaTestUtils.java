@@ -1,16 +1,32 @@
 package com.indi.eventapi.configuration;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @TestConfiguration
+@Slf4j
 public class KafkaTestUtils {
 
     @Bean
-    public KafkaProducer<String, String> kafkaProducer(KafkaProperties kafkaProperties) {
-        var config = kafkaProperties.buildProducerProperties();
-        return new KafkaProducer<>(config);
+    public ProducerFactory<String, String> producerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<String, String>(producerFactory());
     }
 }
