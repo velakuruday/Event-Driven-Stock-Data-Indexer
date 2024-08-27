@@ -140,9 +140,7 @@ task generateApi(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTa
             interfaceOnly          : "true",
             skipDefaultInterface   : "true",
             useTags                : "true",
-            additionalModelTypeAnnotations: "@lombok.Builder;@lombok.AllArgsConstructor;@lombok.NoArgsConstructor",
-            useSpringBoot3         : "true",
-            useJakartaEe           : "true"
+            additionalModelTypeAnnotations: "@lombok.Builder;@lombok.AllArgsConstructor;@lombok.NoArgsConstructor"
     ]
 }
 

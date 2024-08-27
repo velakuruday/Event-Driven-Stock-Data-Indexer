@@ -1,6 +1,6 @@
 package com.indi.eventapi.consumers;
 
-import com.indi.eventapi.service.UserUpdateIndexer;
+import com.indi.eventapi.service.StockUpdateIndexer;
 import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -11,7 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 @Component
 @AllArgsConstructor
 public class EventApi {
-    private final UserUpdateIndexer indexer;
+    private final StockUpdateIndexer indexer;
 
     private final String CONSUMER_INDEX = "1";
 

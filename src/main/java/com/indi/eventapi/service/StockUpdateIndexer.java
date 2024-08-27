@@ -14,14 +14,14 @@ import java.io.IOException;
 
 @Service
 @Slf4j
-public class UserUpdateIndexer {
+public class StockUpdateIndexer {
     private final ElasticsearchClient esClient;
 
     private final ObjectMapper objectMapper;
 
     private final String ELASTIC_SEARCH_INDEX_VERSION = "1";
 
-    public UserUpdateIndexer(ElasticsearchClient esClient, ObjectMapper objectMapper) {
+    public StockUpdateIndexer(ElasticsearchClient esClient, ObjectMapper objectMapper) {
         this.esClient = esClient;
         this.objectMapper = objectMapper;
     }
