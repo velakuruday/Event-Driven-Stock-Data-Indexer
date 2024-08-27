@@ -35,13 +35,12 @@ public class StockUpdateIndexer {
                     .document(StockUpdate.toStockUpdate(stockUpdateDto)));
 
             esClient.index(request);
-
-            ack.acknowledge();
         } catch (JsonProcessingException e) {
             log.error("Error processing message {}", e.getMessage());
-            ack.acknowledge();
         } catch (IOException e) {
             log.error("Indexing failed {}", e.getMessage());
+        } finally {
+            ack.acknowledge();
         }
     }
 }

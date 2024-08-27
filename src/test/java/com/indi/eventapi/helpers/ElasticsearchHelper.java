@@ -32,12 +32,11 @@ public class ElasticsearchHelper {
         }
     }
 
-    public boolean refreshIndices() {
+    public void refreshIndices() {
         try {
             esClient.indices().refresh(r -> r);
-            return true;
         } catch (IOException e) {
-            return false;
+            throw new RuntimeException(e);
         }
     }
 
