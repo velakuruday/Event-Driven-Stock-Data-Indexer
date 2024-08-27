@@ -4,8 +4,8 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.indi.eventapi.dto.StockDataDto;
-import com.indi.eventapi.dto.StockUpdateDataDto;
+import com.indi.eventapi.dto.StockDto;
+import com.indi.eventapi.dto.StockUpdateDto;
 import com.indi.eventapi.service.StockUpdateIndexer;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,9 +40,9 @@ public class StockUpdateIndexerTest {
 
         var message = parseJson("src/test/resources/user_update_test_data.json");
 
-        var update = StockUpdateDataDto.builder()
+        var update = StockUpdateDto.builder()
                 .timestamp("2024-08-16 09:30:00-04:00")
-                .stocks(List.of(StockDataDto.builder()
+                .stocks(List.of(StockDto.builder()
                         .code("AAPL")
                         .adjClose(223.8800048828125F)
                         .close(223.8800048828125F)
@@ -54,7 +54,7 @@ public class StockUpdateIndexerTest {
 
         var ack = mock(Acknowledgment.class);
 
-        when(mapper.readValue(anyString(), Mockito.eq(StockUpdateDataDto.class))).thenReturn(update);
+        when(mapper.readValue(anyString(), Mockito.eq(StockUpdateDto.class))).thenReturn(update);
 
         stockUpdateIndexer.indexUserUpdate(message, ack);
 
@@ -69,7 +69,7 @@ public class StockUpdateIndexerTest {
 
         var ack = mock(Acknowledgment.class);
 
-        when(mapper.readValue(anyString(), eq(StockUpdateDataDto.class))).thenThrow(JsonProcessingException.class);
+        when(mapper.readValue(anyString(), eq(StockUpdateDto.class))).thenThrow(JsonProcessingException.class);
 
         stockUpdateIndexer.indexUserUpdate(message, ack);
 

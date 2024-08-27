@@ -1,6 +1,6 @@
 package com.indi.eventapi.models;
 
-import com.indi.eventapi.dto.StockDataDto;
+import com.indi.eventapi.dto.StockDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,7 @@ public class Stock {
 
     private Integer volume;
 
-    public static Stock toStock(StockDataDto stockDto) {
+    public static Stock toStock(StockDto stockDto) {
         return Stock.builder()
                 .company(Company.codeMap.get(stockDto.getCode()))
                 .code(stockDto.getCode())

@@ -32,9 +32,6 @@ public abstract class IntegrationTest {
     @Autowired
     protected KafkaTemplate<String, String> template;
 
-    @Autowired
-    protected ElasticsearchClient esClient;
-
     @AfterEach
     void tearDown() {
         elasticsearchHelper.deleteAllDocs();

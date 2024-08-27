@@ -1,6 +1,6 @@
 package com.indi.eventapi.models;
 
-import com.indi.eventapi.dto.StockUpdateDataDto;
+import com.indi.eventapi.dto.StockUpdateDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class StockUpdate {
 
     private List<Stock> stocks;
 
-    public static StockUpdate toStockUpdate(StockUpdateDataDto stockUpdateDto) {
+    public static StockUpdate toStockUpdate(StockUpdateDto stockUpdateDto) {
         return StockUpdate.builder()
                 .timestamp(stockUpdateDto.getTimestamp())
                 .stocks(stockUpdateDto.getStocks().stream().map(Stock::toStock).collect(Collectors.toList()))

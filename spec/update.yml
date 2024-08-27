@@ -6,7 +6,7 @@ paths: {}
 
 components:
   schemas:
-    StockData:
+    Stock:
       type: object
       properties:
         code:
@@ -29,7 +29,7 @@ components:
         volume:
           type: integer
 
-    StockUpdateData:
+    StockUpdate:
       type: object
       properties:
         timestamp:
@@ -37,4 +37,4 @@ components:
         stocks:
           type: array
           items:
-            $ref: '#/components/schemas/StockData'
+            $ref: '#/components/schemas/Stock'

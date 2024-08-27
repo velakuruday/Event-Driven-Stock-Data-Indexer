@@ -4,7 +4,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.indi.eventapi.dto.StockUpdateDataDto;
+import com.indi.eventapi.dto.StockUpdateDto;
 import com.indi.eventapi.models.StockUpdate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.Acknowledgment;
@@ -28,7 +28,7 @@ public class StockUpdateIndexer {
 
     public void indexUserUpdate(String message, Acknowledgment ack) {
         try {
-            StockUpdateDataDto stockUpdateDto = objectMapper.readValue(message, StockUpdateDataDto.class);
+            StockUpdateDto stockUpdateDto = objectMapper.readValue(message, StockUpdateDto.class);
 
             IndexRequest<StockUpdate> request = IndexRequest.of(i -> i
                     .index("stock_updates_" + ELASTIC_SEARCH_INDEX_VERSION)

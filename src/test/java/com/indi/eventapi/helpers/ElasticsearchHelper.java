@@ -24,6 +24,22 @@ public class ElasticsearchHelper {
 
     private ObjectMapper mapper;
 
+    public long checkCount(String index) {
+        try {
+            return esClient.count(i -> i.index(index)).count();
+        } catch (IOException e) {
+            return 0;
+        }
+    }
+
+    public boolean refreshIndices() {
+        try {
+            esClient.indices().refresh(r -> r);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
 
     public void deleteAllDocs() {
         try {
