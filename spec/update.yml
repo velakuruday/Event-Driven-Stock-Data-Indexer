@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Defines a user update to be indexed
+  title: Defines a stock update to be indexed
   version: 1.0.0
 paths: {}
 
