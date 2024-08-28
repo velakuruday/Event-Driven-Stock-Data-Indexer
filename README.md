@@ -1,11 +1,9 @@
 # Event driven indxer service
 
-This application provides an indexing service by consuming user data from Kafka
-and indexing into elasticsearch. 
+This application provides an indexing service by consuming stock data and indexing into elasticsearch. 
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/31853241/218024512-b5e11029-e07c-4a04-a474-c4de454fba39.png" alt="Custom image"/>
-</p>
+
+![](indexed.png)
 
 ### Framework
 
@@ -16,11 +14,11 @@ rest client to index documents.
 
 ### Kafka topics
 
-- user-updates
+- stock-updates
 
 ### Elastic search indices
 
-- user_updates_*
+- stock_updates_*
 
 ### Consumer group
 
@@ -30,7 +28,12 @@ rest client to index documents.
 
 - Kafka
 - Elasticsearch
-- Akhq
+- Kafdrop
+
+### Python script Dependencies
+- python 3.9
+- kafka-python 2.0.2
+- yfinance 0.2.41
 
 ## Instructions
 
@@ -62,28 +65,13 @@ docker compose up -d
 >  (linux/arm64). For linux/amd64 architecture, specify them in the "platform"
 > field in the docker compose file.
 
-Open the command window and create a Kafka topic using the command:
+Run the stockfeed script using the command:
 
 ```
-docker-compose exec kafka kafka-topics.sh --create --topic user-updates --partitions 1 --replication-factor 1 --bootstrap-server kafka:9092
+python stockfeed.py
 ```
 
-Run the following command to produce to the topic:
-
-```
-docker-compose exec kafka kafka-console-producer.sh --topic user-updates --broker-list kafka:9092
-```
-
-In the CLI enter the following message:
-
-```
-{"name":"Rick Sanchez","type":"user","id":"5LJT59HYR2","email":"rickc137@rickmail.com","phone":"+1 157 556 8560","membership":{"status":"premium","category":"family"},"address":"Smith Residence, Washington, USA"}
-```
-Search the newly indexed document using:
-
-> http://localhost:9200/user_updates_1/_search
-
-
+The stock data will be consumed by the application and indexed into elasticsearch in the index "stock_updates_*".
 
 
 
