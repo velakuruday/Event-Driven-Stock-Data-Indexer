@@ -9,7 +9,7 @@ components:
     Stock:
       type: object
       properties:
-        code:
+        name:
           type: string
         adj_close:
           type: number
@@ -34,7 +34,7 @@ components:
       properties:
         timestamp:
           type: string
-        stocks:
+        stock_list:
           type: array
           items:
             $ref: '#/components/schemas/Stock'

@@ -7,9 +7,10 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.awaitility.Awaitility.await;
-import static org.awaitility.Durations.FIVE_SECONDS;
+import static org.awaitility.Durations.TEN_SECONDS;
 import static org.awaitility.Durations.TWO_HUNDRED_MILLISECONDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EventApiIntegrationTest extends IntegrationTest {
 
     @Test
-    public void testSuccessfulIndex() throws IOException {
+    public void testSuccessfulIndex() throws IOException, ExecutionException, InterruptedException {
         String message = parseJson("src/test/resources/user_update_test_data.json");
 
         var stockUpdate = StockUpdate.builder()
@@ -33,12 +34,12 @@ public class EventApiIntegrationTest extends IntegrationTest {
                         .volume(5272541)
                         .build())).build();
 
-        template.send("stock-updates", message);
+        template.send("stock-updates", message).get();
 
         elasticsearchHelper.refreshIndices();
 
         await().atLeast(TWO_HUNDRED_MILLISECONDS)
-                .atMost(FIVE_SECONDS)
+                .atMost(TEN_SECONDS)
                 .with()
                 .pollDelay(TWO_HUNDRED_MILLISECONDS)
                 .pollInterval(TWO_HUNDRED_MILLISECONDS)

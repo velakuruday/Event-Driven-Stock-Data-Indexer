@@ -22,7 +22,7 @@ public class StockUpdate {
     public static StockUpdate toStockUpdate(StockUpdateDto stockUpdateDto) {
         return StockUpdate.builder()
                 .timestamp(stockUpdateDto.getTimestamp())
-                .stocks(stockUpdateDto.getStocks().stream().map(Stock::toStock).collect(Collectors.toList()))
+                .stocks(stockUpdateDto.getStockList().stream().map(Stock::toStock).collect(Collectors.toList()))
                 .build();
     }
 }

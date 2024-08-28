@@ -30,8 +30,8 @@ public class Stock {
 
     public static Stock toStock(StockDto stockDto) {
         return Stock.builder()
-                .company(Company.codeMap.get(stockDto.getCode()))
-                .code(stockDto.getCode())
+                .company(Company.codeMap.get(stockDto.getName()))
+                .code(stockDto.getName())
                 .adjClose(stockDto.getAdjClose())
                 .open(stockDto.getOpen())
                 .close(stockDto.getClose())

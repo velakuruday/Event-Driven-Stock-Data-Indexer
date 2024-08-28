@@ -42,8 +42,8 @@ public class StockUpdateIndexerTest {
 
         var update = StockUpdateDto.builder()
                 .timestamp("2024-08-16 09:30:00-04:00")
-                .stocks(List.of(StockDto.builder()
-                        .code("AAPL")
+                .stockList(List.of(StockDto.builder()
+                        .name("AAPL")
                         .adjClose(223.8800048828125F)
                         .close(223.8800048828125F)
                         .high(224.5F)
