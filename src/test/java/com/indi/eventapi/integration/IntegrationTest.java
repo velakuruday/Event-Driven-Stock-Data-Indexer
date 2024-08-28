@@ -1,6 +1,5 @@
 package com.indi.eventapi.integration;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import com.indi.eventapi.configuration.ElasticsearchTestConfig;
 import com.indi.eventapi.configuration.KafkaTestUtils;
 import com.indi.eventapi.helpers.ElasticsearchHelper;
