@@ -71,7 +71,66 @@ Run the stockfeed script using the command:
 python stockfeed.py
 ```
 
-The stock data will be consumed by the application and indexed into elasticsearch in the index "stock_updates_*".
+The stock data will be consumed by the application and indexed into elasticsearch in the index "stock_updates_*". An example
+is shown below:
+
+```
+{
+                    "timestamp": "2024-08-21 14:00:00-04:00",
+                    "stocks": [
+                        {
+                            "company": "Apple Inc.",
+                            "code": "AAPL",
+                            "adjClose": 226.12,
+                            "open": 226.17,
+                            "close": 226.12,
+                            "high": 226.42,
+                            "low": 225.86,
+                            "volume": 0
+                        },
+                        {
+                            "company": "Alphabet Inc.",
+                            "code": "GOOGL",
+                            "adjClose": 165.93,
+                            "open": 166.02,
+                            "close": 165.93,
+                            "high": 166.36,
+                            "low": 165.83,
+                            "volume": 0
+                        },
+                        {
+                            "company": "Coca Cola",
+                            "code": "KO",
+                            "adjClose": 69.48,
+                            "open": 69.48,
+                            "close": 69.48,
+                            "high": 69.505,
+                            "low": 69.47,
+                            "volume": 0
+                        },
+                        {
+                            "company": "Microsoft Corporation",
+                            "code": "MSFT",
+                            "adjClose": 423.88,
+                            "open": 423.97,
+                            "close": 423.88,
+                            "high": 424.545,
+                            "low": 423.74,
+                            "volume": 0
+                        },
+                        {
+                            "company": "Pepsi Co.",
+                            "code": "PEP",
+                            "adjClose": 175.07,
+                            "open": 175.11,
+                            "close": 175.07,
+                            "high": 175.18,
+                            "low": 175.02,
+                            "volume": 0
+                        }
+                    ]
+                }
+```
 
 
 
