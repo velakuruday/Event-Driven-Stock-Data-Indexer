@@ -38,7 +38,7 @@ public class StockUpdateIndexerTest {
     @Test
     public void testSuccessfulIndexing() throws IOException {
 
-        var message = parseJson("src/test/resources/user_update_test_data.json");
+        var message = parseJson("src/test/resources/stock_update_test_data.json");
 
         var update = StockUpdateDto.builder()
                 .timestamp("2024-08-16 09:30:00-04:00")
@@ -65,7 +65,7 @@ public class StockUpdateIndexerTest {
 
     @Test
     public void testJsonParseException() throws IOException {
-        var message = parseJson("src/test/resources/user_update_test_data.json");
+        var message = parseJson("src/test/resources/stock_update_test_data.json");
 
         var ack = mock(Acknowledgment.class);
 

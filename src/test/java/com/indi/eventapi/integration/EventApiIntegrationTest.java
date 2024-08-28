@@ -19,7 +19,7 @@ public class EventApiIntegrationTest extends IntegrationTest {
 
     @Test
     public void testSuccessfulIndex() throws IOException, ExecutionException, InterruptedException {
-        String message = parseJson("src/test/resources/user_update_test_data.json");
+        String message = parseJson("src/test/resources/stock_update_test_data.json");
 
         var stockUpdate = StockUpdate.builder()
                 .timestamp("2024-08-16 09:30:00-04:00")
