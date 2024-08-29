@@ -62,7 +62,7 @@ docker compose up -d
 ```
 >
 > Note: The docker compose file is set to download images for **arm** architecture. 
-> For **linux/amd64** architecture, specify them in the "platform"
+> For **linux/amd64** architecture, specify it in the "platform"
 > field in the docker compose file.
 
 Run the stockfeed script using the command:
