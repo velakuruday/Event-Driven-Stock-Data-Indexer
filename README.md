@@ -61,8 +61,8 @@ Next, run the application and dependencies using the command:
 docker compose up -d
 ```
 >
-> Note: The docker compose file is set to download images for M1 chip
->  (linux/arm64). For linux/amd64 architecture, specify them in the "platform"
+> Note: The docker compose file is set to download images for arm architecture. 
+> For linux/amd64 architecture, specify them in the "platform"
 > field in the docker compose file.
 
 Run the stockfeed script using the command:
